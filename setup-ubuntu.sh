@@ -1,5 +1,26 @@
 #!/bin/bash
 
+# Function to install NVIDIA GPU drivers
+install_nvidia_drivers() {
+    sudo add-apt-repository ppa:graphics-drivers/ppa
+    sudo apt-get update
+    sudo ubuntu-drivers autoinstall
+}
+
+# Parse command line options
+while [ $# -gt 0 ]; do
+    case "$1" in
+        --with-nvidia)
+            install_nvidia=true
+            ;;
+        *)
+            echo "Unknown option: $1"
+            exit 1
+            ;;
+    esac
+    shift
+done
+
 # Update the package lists for upgrades and new package installations
 sudo apt-get update
 
@@ -53,10 +74,7 @@ sh get-docker.sh
 # Install OpenSSH Server
 sudo apt-get install -y openssh-server
 
-# Install NVIDIA GPU drivers (this will add a third-party repository)
-sudo add-apt-repository ppa:graphics-drivers/ppa
-sudo apt-get update
-sudo ubuntu-drivers autoinstall
-
-# WiFi drivers installation is specific to each system and cannot be scripted generically. 
-# Please refer to the ASUS support website or Ubuntu community for specific instructions.
+# Install NVIDIA GPU drivers if the --with-nvidia option is provided
+if [ "$install_nvidia" = true ]; then
+    install_nvidia_drivers
+fi
