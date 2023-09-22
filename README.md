@@ -14,19 +14,20 @@ Currently, the following setup scripts are available:
 ## Usage
 
 To use these scripts, follow these steps:
-
-1. Clone this repository or download the desired setup script.
-2. Open a terminal.
-3. Navigate to the directory containing the setup script.
+1. Clone this repository.
+    ```bash
+    git clone https://github.com/kasutu/setup.git
+    ```
+2. Navigate to the directory containing the setup script.
     ```bash
     cd setup
     ```
-4. Make the script executable with the following command (for Unix-like systems):
+3. Make the script executable with the following command (for Unix-like systems):
    > Please note that this script requires `sudo` privileges to install and configure software.
     ```bash
     sudo chmod +x setup-your-os.sh
     ```
-6. Run the script with the following command:
+4. Run the script with the following command:
     ```bash
     sudo sh setup-your-os.sh [OPTIONS]
     ```
